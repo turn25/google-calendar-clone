@@ -29,7 +29,11 @@ export default function EventModal() {
   const [description, setDescription] = useState(
     selectedEvent ? selectedEvent.description : ""
   );
-  const [selectedLabel, setSelecetedLabel] = useState(LabelsGroup[0]);
+  const [selectedLabel, setSelecetedLabel] = useState(
+    selectedEvent.label
+      ? LabelsGroup.find((lbl) => lbl === selectedEvent.label)
+      : LabelsGroup[0]
+  );
   const [isDisabled, setIsDisabled] = useState(false);
 
   //handle disabled submit button class
