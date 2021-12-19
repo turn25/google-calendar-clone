@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { motion } from "framer-motion";
+import shortid from "shortid";
 
 const formatDate = "dddd, MMMM YYYY";
 
@@ -56,7 +57,7 @@ export default function EventModal() {
       description,
       label: selectedLabel,
       day: selectedDay.valueOf(), // use valueOf instead of value because value will return a dayjs object that can't be stringify
-      id: selectedEvent ? selectedEvent.id : Date.now(), // unique value
+      id: selectedEvent ? selectedEvent.id : shortid.generate(), // unique value
     };
     if (selectedEvent)
       dispatchEvent({ type: "update", payload: calendarEvent });
