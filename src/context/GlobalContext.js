@@ -8,6 +8,12 @@ const GlobalContext = React.createContext({
   setIsNextBtn: () => {},
   isShowSidebar: true,
   setIsShowSidebar: () => {},
+  selectedDay: null,
+  setSelectedDay: (day) => {},
+  smallCalendarMonth: 0,
+  setSmallCalendarMonth: (idx) => {},
+  isShowModal: false,
+  setIsShowModal: () => {},
 });
 
 export default GlobalContext;

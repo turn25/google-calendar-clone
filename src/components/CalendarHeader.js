@@ -12,13 +12,13 @@ export default function CalendarHeader() {
   } = useContext(GlobalContext);
 
   function handlePrevMonth() {
-    setMonthIndex(monthIndex - 1);
     setIsNextBtn(false);
+    setMonthIndex(monthIndex - 1);
   }
 
   function handleNextMonth() {
-    setMonthIndex(monthIndex + 1);
     setIsNextBtn(true);
+    setMonthIndex(monthIndex + 1);
   }
 
   // return current month if monthIndex === current month
@@ -42,7 +42,7 @@ export default function CalendarHeader() {
         alt="calendar_logo"
         className="h-12 w-12 opacity-90 hover:opacity-100 transition ease-in-out"
       />
-      <h1 className="font-bold text-gray-500 text-xl mx-2 hover:text-gray-800 transition ease-in-out">
+      <h1 className="font-bold text-gray-500 text-xl mx-2 hover:text-gray-800 transition ease-in-out cursor-default">
         Calendar
       </h1>
       <button
@@ -61,7 +61,7 @@ export default function CalendarHeader() {
           chevron_right
         </span>
       </button>
-      <h2 className="font-bold text-xl px-5 text-gray-500 hover:text-gray-800 transition ease-in-out">
+      <h2 className="font-bold text-xl px-5 text-gray-500 hover:text-gray-800 transition ease-in-out cursor-default">
         {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
       </h2>
     </header>

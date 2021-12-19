@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .customIcon {
+    @apply text-gray-400 cursor-pointer hover:text-gray-700 transition ease-in-out;
+  }
+}

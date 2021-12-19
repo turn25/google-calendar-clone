@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import CreateButton from "./CreateButton";
-import SmallCalendar from "./SmallCalendar";
-import FilterLabel from "./FilterLabel";
 import CreateEventButton from "./CreateEventButton";
+import SidebarCalendar from "./SidebarCalendar";
+import FilterLabel from "./FilterLabel";
+import CreateEventButtonIcon from "./CreateEventButtonIcon";
 import GlobalContext from "../context/GlobalContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <div>
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter initial={false}>
         {isShowSidebar ? (
           <motion.div
             key={isShowSidebar}
@@ -26,14 +26,23 @@ export default function Sidebar() {
             exit="exit"
             variants={variants}
             transition={{ duration: 0.2 }}
-            className="p-5 w-32 h-full lg:w-64"
+            className="p-5 hidden md:block h-full w-64"
           >
-            <CreateButton />
-            <SmallCalendar />
+            <CreateEventButton />
+            <SidebarCalendar />
             <FilterLabel />
           </motion.div>
         ) : (
-          <CreateEventButton />
+          <motion.div
+            key={isShowSidebar}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            variants={variants}
+            transition={{ duration: 0.2 }}
+          >
+            <CreateEventButtonIcon />
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

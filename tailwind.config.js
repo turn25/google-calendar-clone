@@ -1,12 +1,20 @@
-const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
+const LabelsGroup = [
+  "red",
+  "amber",
+  "green",
+  "blue",
+  "indigo",
+  "purple",
+  "gray",
+];
 
 module.exports = {
   purge: {
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     safelist: [
-      ...labelsClasses.map((lbl) => `bg-${lbl}-500`),
-      ...labelsClasses.map((lbl) => `bg-${lbl}-200`),
-      ...labelsClasses.map((lbl) => `text-${lbl}-400`),
+      ...LabelsGroup.map((lbl) => `bg-${lbl}-500`),
+      ...LabelsGroup.map((lbl) => `bg-${lbl}-200`),
+      ...LabelsGroup.map((lbl) => `text-${lbl}-400`),
     ],
   },
   darkMode: false, // or 'media' or 'class'
