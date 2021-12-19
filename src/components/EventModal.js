@@ -30,7 +30,7 @@ export default function EventModal() {
     selectedEvent ? selectedEvent.description : ""
   );
   const [selectedLabel, setSelecetedLabel] = useState(
-    selectedEvent.label
+    selectedEvent
       ? LabelsGroup.find((lbl) => lbl === selectedEvent.label)
       : LabelsGroup[0]
   );
