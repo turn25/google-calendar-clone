@@ -11,7 +11,12 @@ export default function CreateEventButtonIcon() {
         isShowModal && "bg-gray-200 hover:bg-gray-200"
       }`}
     >
-      <img src="/assets/plus.svg" alt="plus_icon" className="w-10 h-10" />
+      <img
+        src="/assets/plus.svg"
+        alt="plus_icon"
+        className="w-10 h-10"
+        draggable={false}
+      />
     </button>
   );
 }

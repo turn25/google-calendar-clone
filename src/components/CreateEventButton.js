@@ -11,7 +11,12 @@ export default function CreateEventButton() {
         isShowModal && "bg-blue-200"
       }`}
     >
-      <img src="/assets/plus.svg" alt="plus_icon" className="w-8 h-8" />
+      <img
+        src="/assets/plus.svg"
+        alt="plus_icon"
+        className="w-8 h-8"
+        draggable={false}
+      />
       <span className="px-3 text-gray-700">Create</span>
       <span className="material-icons pr-3 text-gray-700 opacity-70">
         expand_more

@@ -3,6 +3,7 @@ import CreateEventButton from "./CreateEventButton";
 import SidebarCalendar from "./SidebarCalendar";
 import FilterLabel from "./FilterLabel";
 import CreateEventButtonIcon from "./CreateEventButtonIcon";
+import SidebarFooter from "./SidebarFooter";
 import GlobalContext from "../context/GlobalContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -26,11 +27,12 @@ export default function Sidebar() {
             exit="exit"
             variants={variants}
             transition={{ duration: 0.2 }}
-            className="p-5 hidden md:block h-full w-64"
+            className="p-5 hidden md:block h-full w-64 relative"
           >
             <CreateEventButton />
             <SidebarCalendar />
             <FilterLabel />
+            <SidebarFooter />
           </motion.div>
         ) : (
           <motion.div

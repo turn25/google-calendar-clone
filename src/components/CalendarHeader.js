@@ -40,9 +40,10 @@ export default function CalendarHeader() {
       <img
         src="/assets/logo.png"
         alt="calendar_logo"
-        className="h-12 w-12 opacity-90 hover:opacity-100 transition ease-in-out"
+        className="h-12 w-12 opacity-90 hover:opacity-100 transition ease-in-out hidden md:block"
+        draggable={false}
       />
-      <h1 className="font-bold text-gray-500 text-xl mx-2 hover:text-gray-800 transition ease-in-out cursor-default">
+      <h1 className="font-bold text-gray-500 text-xl mx-2 hover:text-gray-800 transition ease-in-out cursor-default hidden md:block">
         Calendar
       </h1>
       <button

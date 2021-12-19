@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 
 const formatDate = "dddd, MMMM YYYY";
 
+const formatDay = "DD-MM-YYYY";
+
 const LabelsGroup = [
   "red",
   "amber",
@@ -15,11 +17,18 @@ const LabelsGroup = [
 ];
 
 export default function EventModal() {
-  const { isShowModal, setIsShowModal, selectedDay } =
-    useContext(GlobalContext);
+  const {
+    isShowModal,
+    setIsShowModal,
+    selectedDay,
+    dispatchEvent,
+    selectedEvent,
+  } = useContext(GlobalContext);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
+  const [description, setDescription] = useState(
+    selectedEvent ? selectedEvent.description : ""
+  );
   const [selectedLabel, setSelecetedLabel] = useState(LabelsGroup[0]);
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -36,6 +45,26 @@ export default function EventModal() {
     } else setIsDisabled(false);
   }, [title, description]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const calendarEvent = {
+      title,
+      description,
+      label: selectedLabel,
+      day: selectedDay.valueOf(), // use valueOf instead of value because value will return a dayjs object that can't be stringify
+      id: selectedEvent ? selectedEvent.id : Date.now(), // unique value
+    };
+    if (selectedEvent)
+      dispatchEvent({ type: "update", payload: calendarEvent });
+    else dispatchEvent({ type: "push", payload: calendarEvent });
+    setIsShowModal(false);
+  }
+
+  function handleRemoveItem() {
+    dispatchEvent({ type: "remove", payload: selectedEvent });
+    setIsShowModal(false);
+  }
+
   return (
     <motion.div
       key={isShowModal}
@@ -43,7 +72,7 @@ export default function EventModal() {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 50, opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="flex justify-center items-center h-screen w-full fixed top-0 left-0"
+      className="flex justify-center items-center h-screen w-full fixed top-0 left-0 z-10 noselect" //add disable mouse hightlight class
     >
       <form className="bg-white w-100 shadow-2xl rounded-lg lg:w-1/4 md:1/3">
         <header className="bg-gray-100 flex justify-between items-center px-4 py-2">
@@ -51,7 +80,14 @@ export default function EventModal() {
             drag_handle
           </span>
           <div>
-            <span className="material-icons customIcon">delete</span>
+            {selectedEvent && (
+              <span
+                onClick={handleRemoveItem}
+                className="material-icons customIcon"
+              >
+                delete
+              </span>
+            )}
             <span
               onClick={() => setIsShowModal(false)}
               className="material-icons customIcon"
@@ -76,8 +112,20 @@ export default function EventModal() {
             <span className="material-icons text-gray-400 cursor-default">
               schedule
             </span>
-            <p className="text-gray-700 p-2 w-full cursor-default hover:text-gray-900 hover:bg-gray-100 rounded-md transition ease-in-out ">
+
+            <p className="text-gray-600 p-2 w-full cursor-default hover:text-gray-900 hover:bg-gray-100 rounded-md transition ease-in-out">
               {selectedDay.format(formatDate)}
+            </p>
+
+            <span className="material-icons text-gray-400 cursor-default">
+              alarm
+            </span>
+            <p className="text-gray-600 p-2 w-full cursor-default hover:text-gray-900 hover:bg-gray-100 rounded-md transition ease-in-out">
+              <span
+                className={`border-b-[1px] border-transparent hover:border-gray-500 transition ease-in-out delay-150`}
+              >
+                {selectedDay.format(formatDay)}
+              </span>
             </p>
 
             <span className="material-icons text-gray-400 cursor-default">
@@ -115,6 +163,7 @@ export default function EventModal() {
         </div>
         <footer className="flex justify-end items-center p-3 mt-4">
           <button
+            onClick={handleSubmit}
             className={`rounded text-white px-8 py-2 ${handleDisabledClass()}`}
             disabled={isDisabled}
           >

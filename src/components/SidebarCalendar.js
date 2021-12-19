@@ -12,7 +12,7 @@ export default function SidebarCalendar() {
     setIsNextBtn,
     selectedDay,
     setSelectedDay,
-    setSmallCalendarMonth,
+    setSidebarCalendarMonth,
   } = useContext(GlobalContext);
 
   const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
@@ -89,7 +89,7 @@ export default function SidebarCalendar() {
                 key={idx}
                 onClick={() => {
                   setSelectedDay(day);
-                  setSmallCalendarMonth(currentMonthIdx);
+                  setSidebarCalendarMonth(currentMonthIdx);
                 }}
                 className={`w-full ${currentDayClass(
                   day

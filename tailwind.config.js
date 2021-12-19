@@ -13,6 +13,7 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     safelist: [
       ...LabelsGroup.map((lbl) => `bg-${lbl}-500`),
+      ...LabelsGroup.map((lbl) => `bg-${lbl}-300`),
       ...LabelsGroup.map((lbl) => `bg-${lbl}-200`),
       ...LabelsGroup.map((lbl) => `text-${lbl}-400`),
     ],
@@ -31,5 +32,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("tailwind-scrollbar-hide")],
 };

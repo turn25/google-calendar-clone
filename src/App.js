@@ -16,7 +16,8 @@ function App() {
       <AnimatePresence exitBeforeEnter initial={false}>
         {isShowModal && <EventModal />}
       </AnimatePresence>
-      <div className="flex flex-col h-screen overflow-hidden">
+      {/* add disable mouse hightlight class */}
+      <div className="flex flex-col h-screen overflow-auto scrollbar-hide noselect">
         <CalendarHeader />
         <div className="flex flex-1">
           <Sidebar />
