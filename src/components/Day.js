@@ -52,6 +52,7 @@ export default function Day({ day, rowIdx }) {
               </p>
             )}
             <p
+              onClick={() => setSelectedDay(day)}
               className={`my-[0.5rem] p-1 text-sm text-center ${todayClass()} cursor-pointer transition ease-in-out hover:-translate-y-1 duration-200`}
             >
               {day.format(formatDay)}
