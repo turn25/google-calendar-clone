@@ -65,7 +65,7 @@ export default function Day({ day, rowIdx }) {
             }}
             className="flex flex-col flex-1 cursor-pointer"
           >
-            <div className="overflow-y-scroll scrollbar-hide h-[calc(100vh-64px)/5]">
+            <div className="overflow-y-scroll scrollbar-hide h-16 md:h-24">
               <AnimatePresence>
                 {dayEventItems.map((event) => (
                   <motion.div

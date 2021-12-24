@@ -28,7 +28,7 @@ export default function CalendarHeader() {
   }
 
   return (
-    <header className="px-2 py-2 md:px-4 flex items-center h-[64px]">
+    <header className="px-2 py-2 md:px-4 flex items-center h-[64px] justify-center md:justify-start">
       <button
         onClick={() => setIsShowSidebar(!isShowSidebar)}
         className="flex items-center mx-1"
@@ -62,7 +62,7 @@ export default function CalendarHeader() {
           chevron_right
         </span>
       </button>
-      <h2 className="font-bold text-lg md:text-xl px-2 md:px-5 text-gray-500 hover:text-gray-800 transition ease-in-out cursor-default">
+      <h2 className="font-bold text-xl px-2 md:px-5 text-gray-500 hover:text-gray-800 transition ease-in-out cursor-default">
         {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
       </h2>
     </header>
